@@ -238,7 +238,8 @@ function setSidebarListItems(sidebarUnorderedList) {
 function sidebarObserverCallback(mutations, observer) {
     for (const mutation of mutations) {
         for (const node of mutation.addedNodes) {
-            if (node.tagName == 'UL') {
+            if (node.tagName == 'UL' && !observer.isListItemsSet) {
+                observer.isListItemsSet = true;
                 setSidebarListItems(node);
             }
         }
@@ -266,6 +267,7 @@ function bodyObserverCallback(mutations, observer) {
                         const unorderedList = node.querySelector('ul');
                         if (unorderedList == null) {
                             const sidebarObserver = new MutationObserver(sidebarObserverCallback);
+                            sidebarObserver.isListItemsSet = false;
                             sidebarObserver.observe(node, { subtree: true, childList: true });
                         } else {
                             setSidebarListItems(unorderedList);
