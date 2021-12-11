@@ -1,7 +1,7 @@
 {
     "name": "NTU Cool Course Extension",
     "description": "Extension for NTU cool. This extension allows students to add sitting-in courses to their NTU cool dashborad and course list.",
-    "version": "1.0",
+    "version": "1.1",
     "manifest_version": 3,
     "background": {
         "service_worker": "background.js"

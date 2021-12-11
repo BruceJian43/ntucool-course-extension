@@ -1,6 +1,7 @@
 # NTU Cool Course Extension
 
-將想要旁聽的課程新增到 NTU cool 的資訊總覽 (Dashboard) 及課程列表 (Courses)
+*  將想要旁聽的課程新增到 NTU cool 的資訊總覽 (Dashboard) 及課程列表 (Courses)
+*  在課程內容的地方增加附加檔案的下載連結
 
 ## 安裝 Chrome Extension
 見[官方教學](https://developer.chrome.com/docs/extensions/mv3/getstarted/)，步驟如下圖
@@ -34,3 +35,15 @@
 ![](./img/6.png)
 
 如果要在無痕模式使用也是在 Details 那邊設定
+
+## Changelog
+
+### 1.1
+
+*  在課程內容的地方增加附加檔案的下載連結
+
+![](./img/7.png)
+
+### 1.0
+
+*  管理旁聽課程功能

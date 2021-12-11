@@ -279,6 +279,39 @@ function bodyObserverCallback(mutations, observer) {
     }
 }
 
+function addDownloadIconToItemGroupRow() {
+    const rows = document.querySelectorAll('.item-group-container .ig-row');
+    for (const row of rows) {
+        // check if the type of this row is attachment
+        const iconTypes = row.querySelectorAll('i');
+        for (const icon of iconTypes) {
+            if (icon.clientHeight > 0 && icon.classList.contains('icon-paperclip')) {
+                // create element
+                const anchor = document.createElement('a');
+                anchor.style.cursor = 'pointer';
+                const downloadIcon = document.createElement('i');
+                downloadIcon.classList.add('icon-download');
+                const span = document.createElement('span');
+                span.innerText = 'Download';
+                anchor.appendChild(downloadIcon);
+                anchor.appendChild(span);
+                row.appendChild(anchor);
+                anchor.addEventListener('click', () => {
+                    const anchorOfRow = row.querySelector('a');
+                    const itemURL = anchorOfRow == null ? null : anchorOfRow.href;
+                    fetch(itemURL)
+                        .then((response) => {
+                            const attachmentURL = response.url.split('?')[0];
+                            const downloadLink = document.createElement('a');
+                            downloadLink.href = `${attachmentURL}/download?download_frd=1`;
+                            downloadLink.click();
+                    })
+                })
+            }
+        }
+    }
+}
+
 const bodyObserver = new MutationObserver(bodyObserverCallback);
 const dashboard = document.querySelector('.unpublished_courses_redesign');
 if (dashboard != null) {
@@ -287,3 +320,5 @@ if (dashboard != null) {
     setDashboardCards(sitInDashboardCardBox);
 }
 bodyObserver.observe(document.body, { subtree: true, childList: true });
+
+addDownloadIconToItemGroupRow();
